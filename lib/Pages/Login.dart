@@ -18,75 +18,78 @@ class _loginPageState extends State<loginPage> {
       appBar: AppBar(
         title: Text('BIT Mesra - Jaipur'),
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 50,
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Image(
-              image: AssetImage('lib/Images/logo.png'),
-              height: 250,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 50,
             ),
-          ),
-          SizedBox(
-            height: 70,
-          ),
-          Text(
-            'LogIn',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: TextField(
-                decoration: InputDecoration(
-                    labelText: 'College ID', hintText: 'btech2507921')),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: TextField(
-                decoration: InputDecoration(
-                    labelText: 'Password', hintText: '************')),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          SizedBox(
-            height: 40,
-            width: 300,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => dashboard()));
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Image(
+                image: AssetImage('lib/Images/logo.png'),
+                height: 250,
+              ),
+            ),
+            SizedBox(
+              height: 70,
+            ),
+            Text(
+              'LogIn',
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: TextField(
+                  decoration: InputDecoration(
+                      labelText: 'College ID', hintText: 'btech2507921')),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: TextField(
+                  decoration: InputDecoration(
+                      labelText: 'Password', hintText: '************')),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            SizedBox(
+              height: 40,
+              width: 300,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => dashboard()));
+                },
+                child: Text('LogIn'),
+                style: ButtonStyle(),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => signUp()));
               },
-              child: Text('LogIn'),
-              style: ButtonStyle(),
+              child: Text(
+                'SignUp',
+                style:
+                    TextStyle(color: Colors.red, fontWeight: FontWeight.w500),
+              ),
             ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => signUp()));
-            },
-            child: Text(
-              'SignUp',
-              style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500),
+            SizedBox(
+              height: 10,
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            'Made with ❤️ By Iftikhar',
-          )
-        ],
+            Text(
+              'Made with ❤️ By Iftikhar',
+            )
+          ],
+        ),
       ),
     );
   }
