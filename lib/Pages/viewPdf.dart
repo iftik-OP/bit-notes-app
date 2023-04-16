@@ -3,7 +3,9 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 
 class viewPdf extends StatefulWidget {
-  const viewPdf({super.key});
+  final fileName;
+
+  viewPdf({required this.fileName});
 
   @override
   State<viewPdf> createState() => _viewPdfState();
@@ -12,6 +14,8 @@ class viewPdf extends StatefulWidget {
 class _viewPdfState extends State<viewPdf> {
   @override
   Widget build(BuildContext context) {
-    return PDFView();
+    return PDFView(
+      filePath: widget.fileName,
+    );
   }
 }

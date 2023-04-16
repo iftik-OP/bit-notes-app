@@ -1,8 +1,10 @@
 import 'package:bit_app/Pages/Dashboard.dart';
-import 'package:bit_app/Pages/SignUp.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class loginPage extends StatefulWidget {
   const loginPage({super.key});
@@ -32,55 +34,28 @@ class _loginPageState extends State<loginPage> {
               ),
             ),
             SizedBox(
-              height: 70,
+              height: 100,
             ),
             Text(
               'LogIn',
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: TextField(
-                  decoration: InputDecoration(
-                      labelText: 'College ID', hintText: 'btech2507921')),
-            ),
             SizedBox(
-              height: 40,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: TextField(
-                  decoration: InputDecoration(
-                      labelText: 'Password', hintText: '************')),
-            ),
-            SizedBox(
-              height: 40,
+              height: 50,
             ),
             SizedBox(
               height: 40,
               width: 300,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => dashboard()));
+                  SignInWithGoogle();
                 },
-                child: Text('LogIn'),
-                style: ButtonStyle(),
+                child: Text('SignIn with Google'),
+                style: ElevatedButton.styleFrom(primary: Colors.indigo[400]),
               ),
             ),
             SizedBox(
-              height: 30,
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => signUp()));
-              },
-              child: Text(
-                'SignUp',
-                style:
-                    TextStyle(color: Colors.red, fontWeight: FontWeight.w500),
-              ),
+              height: 200,
             ),
             SizedBox(
               height: 10,
@@ -92,5 +67,21 @@ class _loginPageState extends State<loginPage> {
         ),
       ),
     );
+  }
+
+  SignInWithGoogle() async {
+    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+
+    Navigator.push(
+        context, MaterialPageRoute(builder: ((context) => dashboard())));
   }
 }

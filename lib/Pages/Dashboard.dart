@@ -93,7 +93,10 @@ class _dashboardState extends State<dashboard> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: ((context) => listFiles()),
+                        builder: ((context) => listFiles(
+                              selectedItem: _selectedItem!,
+                              selectedSem: _selectedSem!,
+                            )),
                       ),
                     ),
                   },
