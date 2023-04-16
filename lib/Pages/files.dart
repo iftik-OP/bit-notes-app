@@ -31,19 +31,20 @@ class _listFilesState extends State<listFiles> {
         .ref('${widget.selectedItem}/${widget.selectedSem}')
         .listAll(); // retrieves all files from root folder
 
-    result.items.forEach((Reference ref) {
+    for (final Reference ref in result.items) {
+      final pdfUrl = await ref.getDownloadURL();
       setState(() {
         _fileNames.add(ref.name);
+        _pdfurls.add(pdfUrl);
       });
-    });
-
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Firebase Storage Files'),
+        title: Text('Select Subject'),
       ),
       body: Column(
         children: [
@@ -53,8 +54,13 @@ class _listFilesState extends State<listFiles> {
               itemBuilder: (context, index) {
                 return ListTile(
                   onTap: () {
-                    viewPdf(
-                      fileName: _pdfurls[index],
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => viewPdf(
+                          fileName: _pdfurls[index],
+                        ),
+                      ),
                     );
                   },
                   title: Text(_fileNames[index]),
