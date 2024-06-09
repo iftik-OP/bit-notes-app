@@ -2,8 +2,6 @@ import 'package:bit_app/Pages/Dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class loginPage extends StatefulWidget {
@@ -51,7 +49,7 @@ class _loginPageState extends State<loginPage> {
                   SignInWithGoogle();
                 },
                 child: Text('SignIn with Google'),
-                style: ElevatedButton.styleFrom(primary: Colors.indigo[400]),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo[400]),
               ),
             ),
             SizedBox(

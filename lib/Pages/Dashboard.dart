@@ -1,7 +1,5 @@
 import 'package:bit_app/Pages/files.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class dashboard extends StatefulWidget {
   const dashboard({super.key});
